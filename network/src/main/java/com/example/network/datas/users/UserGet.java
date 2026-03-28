@@ -3,27 +3,25 @@ package com.example.network.datas.users;
 import com.example.network.domains.apis.MyAsyncTask;
 import com.example.network.domains.callbacks.MyResponseCallback;
 import com.example.network.domains.common.Settings;
-import com.example.network.domains.models.User;
-import com.google.gson.GsonBuilder;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
 
-public class UserLogout extends MyAsyncTask {
+public class UserGet extends MyAsyncTask {
     String token;
-    public UserLogout(String token, MyResponseCallback callback) {
+    public UserGet(String token, MyResponseCallback callback) {
         super(callback);
         this.token = token;
     }
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            Connection.Response response = Jsoup.connect(Settings.URL + "/api/user/logout")
+            Connection.Response response = Jsoup.connect(Settings.URL + "/api/user/get")
                     .ignoreContentType(true)
                     .ignoreHttpErrors(true)
-                    .method(Connection.Method.POST)
+                    .method(Connection.Method.GET)
                     .header("Content-type", "application/json")
                     .header("token", token)
                     .execute();
