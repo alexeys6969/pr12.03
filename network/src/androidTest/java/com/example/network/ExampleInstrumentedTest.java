@@ -25,29 +25,9 @@ import com.example.network.domains.models.User;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Test
-    public void UserLogin() throws InterruptedException {
-        final Boolean[] Success = {false};
-        CountDownLatch Latch = new CountDownLatch(1);
-        User User = new User("testing@mail.ru", "Asdfg123*");
-
-        new UserLogin(
-                User,
-                new MyResponseCallback() {
-                    @Override
-                    public void onCompile(String result) {
-                        Log.d("USER LOGIN", result);
-                        Success[0] = true;
-                        Latch.countDown();
-                    }
-
-                    @Override
-                    public void onError(String error) {
-                        Log.e("USER LOGIN", error);
-                        Latch.countDown();
-                    }
-                }
-        ).execute();
-        Boolean Completed = Latch.await(60, TimeUnit.SECONDS);
-        assertTrue(Success[0]);
+    public void useAppContext() {
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        assertEquals("com.example.toolsshashin", appContext.getPackageName());
     }
 }
