@@ -1,6 +1,7 @@
 package com.example.network.domains.apis;
 
 import android.os.AsyncTask;
+import com.example.network.domains.apis.MyAsyncTask;
 import com.example.network.domains.callbacks.MyResponseCallback;
 
 public class MyAsyncTask extends AsyncTask<Void, Void, String> {
